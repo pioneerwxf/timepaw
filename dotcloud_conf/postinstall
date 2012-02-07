@@ -1,0 +1,5 @@
+#!/bin/sh
+python timepaw/manage.py syncdb --noinput
+mkdir -p /home/dotcloud/data/media
+mkdir -p /home/dotcloud/data/static
+python timepaw/manage.py collectstatic --noinput 

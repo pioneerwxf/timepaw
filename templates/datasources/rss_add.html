@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="{{ STATIC_URL }}timepaw/css/bundles/signIn.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block headjs %}
+<script src="{{ STATIC_URL }}timepaw/js/bundles/signIn.js"></script>
+{% endblock %}
+
+{% block title %}连接RSS到Timepaw{% endblock %}
+
+{% block content %}
+<div class="indentation main_home" style="background-position: 50% -500px; ">
+  	<div id="loader" class="spin" style="top: -30%; opacity: 0; ">&nbsp;</div>
+	<div id="marker" style="opacity: 1; ">
+   		<div class="dot_pulse"></div>
+  		<div class="dot"></div>
+	</div>
+	<div id="timeline_animator"></div>
+	<h1 id="extraneous_title" class="login transition" style="top: 35%; ">
+		<span class="welcome" style="top: 0px; ">添加时光机来源</span>
+	</h1>
+</div>
+
+<div id="header" class="more1024">
+	<div id="top-bar">
+	  	<div class="utility"></div>
+
+		<h1><a href="/home#latest">TimePaw</a></h1>
+	</div>
+</div>
+
+
+<div id="content">
+	<h1 class="header typeE" style="text-align:left; font-size:20px; padding:20px 0 0 20px;">添加RSS到时光机</h1>
+	
+	<form action="/datasources/rss_add" enctype="multipart/form-data" method="post" id="signin">           
+	{% csrf_token %}
+		<label>
+			您的RSS地址：<div class="formHelpText float-right" style="display:inline;">类似http://blog.timepaw.com/feed/</div>
+			<input type="text" name="url" id="username" tabindex="1" />
+		</label>
+		<div id="form-actions">
+			<input type="submit" value="连接RSS" class="btn-green float-right" tabindex="4" style="font-size:13px; padding-left:18px; padding-right:18px;" />
+		</div>
+	</form>
+{% endblock %}

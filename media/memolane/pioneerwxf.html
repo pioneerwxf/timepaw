@@ -1,0 +1,536 @@
+
+<!doctype html>
+
+<!--[if IE 8]> <html class="ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9]> <html class="ie9 no-js" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+	   Remove this if you use the .htaccess -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Memolane | See, search, and share your life</title>
+	
+	<meta name="title" content="Memolane | See, search, and share your life" />
+	
+	<meta name="description" content="Keep your memories alive. Capture photos, music, tweets, posts, and much more. View and share your entire online life in one place. Explore and search your history. One timeline, a million memories." />
+	
+	<!-- Tablet Optimized -->
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	
+	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	
+	<!-- CSS: implied media="all" -->
+        
+        <link rel="stylesheet" href="css/bundles/app.css">
+        
+	<!-- CSS: IE8 only overide styles -->
+	<!--[if IE 8 ]><![endif]-->
+	
+	<!-- Memolane namespace -->
+	<script type="text/javascript">
+	/*-----------------------------
+	setup application namespace
+	-----------------------------*/
+	window.memolane = {};
+	//setup shortcut
+	window.m = memolane;
+
+	</script>
+
+</head>
+
+<body>
+
+<div id="header" class="more1024">
+
+	<ul id="utilityNav" class="user-is-logged-in">
+		<li><a href="site" title="Memolane.com">Memolane.com</a></li>
+		<li><a href="settings/services" title="My Services">My Services</a></li>
+		<li><a href="settings/account" title="My Settings">My Settings</a></li>
+		<!-- <li><a href="site" title="Help">Help</a></li> -->
+		<li><a href="javascript:UserVoice.showPopupWidget();" title="Feedback">Feedback</a></li>
+		<li><a href="logout" title="Logout">Logout</a></li>
+	</ul>
+	
+	<ul id="utilityNav" class="user-is-not-logged-in">
+		<li><a href="site" title="Memolane.com">Memolane.com</a></li>
+		<li><a href="site" title="Help">Help</a></li>
+		<li><a href="signin" title="Sign In">Sign In</a></li>
+	</ul>
+	 
+	<div id="top-bar">
+	
+		<h1><a href="site">Memolane</a></h1>
+		
+		<div class="top-bar-logged-in user-is-logged-in">
+			<div class="top-bar-section top-bar-btn">
+				<a id="tb-dashboard" href="pioneerwxf"><img src="pioneerwxf/image" alt="topBarAvatar" width="20" height="20" /><span class="for-m-1024">Dashboard</span><span class="for-l-1024">Me</span></a>
+			</div>
+			<div class="top-bar-section top-bar-btn tb-dropdown" data-ddid="dd-news" id="dd-news-button">
+				<span id="tb-news" class="tb-dropdown-btn"><span id="tb-news-count"><span>0</span></span><span class="for-m-1024">News</span><span class="for-l-1024" id="news-icon">&nbsp;</span></span>
+			</div>
+			<div class="top-bar-section top-bar-btn tb-dropdown" data-ddid="dd-friends" id="dd-friends-button">
+				<span id="tb-friends" class="tb-dropdown-btn"><span id="tb-friends-count"><span>0</span></span><span class="for-m-1024">Friends</span><span class="for-l-1024" id="friends-icon">&nbsp;</span></span>
+			</div>
+			<div class="top-bar-section top-bar-btn tb-dropdown" data-ddid="dd-lanes" id="dd-lanes-button">
+				<span id="tb-lanes" class="tb-dropdown-btn"><span>Lanes</span></span>
+			</div>
+			<div class="top-bar-section" id="tb-create-lane">
+				<a class="btn-green" href="pioneerwxf/new" ><span class="for-m-1024">New Lane</span><span class="for-l-1024">+ Lane</span></a>
+			</div>
+		</div>
+
+		<div class="top-bar-signup user-is-not-logged-in">
+			<h2>Want to see, search & share you life?</h2>
+			<a class="btn-green" href="signup"><span>Sign Up</span></a>
+		</div>
+		
+		<div class="top-bar-section" id="tb-search">
+                        
+			        <input type="input" id="search-input" />
+                        
+			<a id="close-search-btn">exit search</a>
+		</div>
+		
+	</div>
+
+		
+		<h2 class="header typeH lane-title" title="">New Lane<span>by</span> <a href="pioneerwxf" title="pioneerwxf">wang xianfeng</a></h2>
+
+		<ul id="lane-actions">
+				
+			<li><a class="favorited" data-fav="true" href="#" id="favorite-un-fav" title="Favorite Lane"></a></li>
+			
+			<li><a class="shareURL shareLane" href="#" data-share-link="pioneerwxf/New Lane" data-share-text="Check out this lane on memolane" data-share-dialog-text="Share lane on" title="Share this lane"></a></li>
+		</ul>
+
+</div>
+	
+<div id="lane-drawer">
+	<div id="lane-drawer-content"></div>
+	<div id="lane-drawer-tab"><span>
+		<img src="img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /><img src="img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /></span>
+	</div>
+</div>
+
+<div id="content">
+	<div id="screenLeftBtn" class="screenBtn"><span><img src="img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /><img src="img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /></span></div>
+	<div id="screenRightBtn" class="screenBtn"><span><img src="img/common/arrowRight.png" alt="arrowLeft" width="6" height="11" /><img src="img/common/arrowRight.png" alt="arrowLeft" width="6" height="11" /></span></div>
+	<div id="lane-viewport">
+		<div id="shadow"></div>
+		<div id="lane" data-lane-id="qsnh8zu7rl01r3nbh1i5603gjc77ywl1" data-lane-title="New Lane" data-lane-description="" data-user-id="a8572477f04f51603eca0c66e70ba003">
+			<div class="lane-slot" id="1219968000">	
+				<div class="lane-circle"></div>	
+				<div class="lane-slot-title">Fri, August 29, 2008</div>	
+				<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+					<div id="a8572477f04f51603eca0c66e70ba003facebook12750906425476472606825737889" class="memo facebook isotope-item" data-time="1219988231" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+						<div class="memoTitleBar">     
+							<div class="memoServiceIcon"></div>     
+						</div>      
+						<div class="memoContent fixed-photo-height">    
+							<img src="http://a5.sphotos.ak.fbcdn.net/hphotos-ak-snc6/205586_1035343805250_1275090642_93857_1646_n.jpg" title="">   
+						</div>    
+						<div class="memoFooterBar">     
+							<ul class="memoOwnerActions">    
+								<li><div class="memo_icon memo_privacy memo_private">private</div></li>   
+							</ul>   
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="lane-slot" id="1294617600">	
+				<div class="lane-circle"></div>	
+				<div class="lane-slot-title">Mon, January 10, 2011</div>	
+				<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+					<div id="a8572477f04f51603eca0c66e70ba003feedhttpwwwwangxianfengcomfeedrss2httpwwwwangxianfengcom20110110%e5%8f%af%e8%80%bb%e7%9a%84%e6%88%90%e7%86%9f" class="memo feed isotope-item" data-time="1294671776" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+						<div class="memoTitleBar">     
+							<div class="memoServiceIcon"></div>     
+						</div> 
+						<div class="memoContent">     
+							<div class="memoHeaderHTML">    风清扬者   </div>       
+							<p>可耻的成熟</p>   
+						</div> 
+						<div class="memoFooterBar">     
+							<ul class="memoOwnerActions">    
+								<li><div class="memo_icon memo_privacy memo_friends">friends</div></li>   
+							</ul>   
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="lane-slot" id="1219968000">	
+			<div class="lane-circle"></div>	
+			<div class="lane-slot-title">Fri, August 29, 2008</div>	
+			<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+				<div id="a8572477f04f51603eca0c66e70ba003facebook12750906425476472606825737889" class="memo facebook isotope-item" data-time="1219988231" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+					<div class="memoTitleBar">     
+						<div class="memoServiceIcon"></div>     
+					</div>      
+					<div class="memoContent fixed-photo-height">    
+						<img src="http://a5.sphotos.ak.fbcdn.net/hphotos-ak-snc6/205586_1035343805250_1275090642_93857_1646_n.jpg" title="">   
+					</div>    
+					<div class="memoFooterBar">     
+						<ul class="memoOwnerActions">    
+							<li><div class="memo_icon memo_privacy memo_private">private</div></li>   
+						</ul>   
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="lane-slot" id="1294617600">	
+			<div class="lane-circle"></div>	
+			<div class="lane-slot-title">Mon, January 10, 2011</div>	
+			<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+				<div id="a8572477f04f51603eca0c66e70ba003feedhttpwwwwangxianfengcomfeedrss2httpwwwwangxianfengcom20110110%e5%8f%af%e8%80%bb%e7%9a%84%e6%88%90%e7%86%9f" class="memo feed isotope-item" data-time="1294671776" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+					<div class="memoTitleBar">     
+						<div class="memoServiceIcon"></div>     
+					</div> 
+					<div class="memoContent">     
+						<div class="memoHeaderHTML">    风清扬者   </div>       
+						<p>可耻的成熟</p>   
+					</div> 
+					<div class="memoFooterBar">     
+						<ul class="memoOwnerActions">    
+							<li><div class="memo_icon memo_privacy memo_friends">friends</div></li>   
+						</ul>   
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div id="timeline">
+		<a href="#" id="timelineBeginDate">Sep '92</a>
+		<div id="timelineCurrent" style="left:650px;">
+			<div class="timelineIndicator">&nbsp;</div>
+			<span id="timelineDate">Jan 1, 2000</span>
+		</div>
+		<div href="#" id="timelineHover" style="left:250px;">
+			<div class="timelineIndicator">&nbsp;</div>
+		</div>
+		<a href="#" id="timelineEndDate">Apr '11</a>
+	</div>
+	
+    <div id='embedded-branding' style="display:none;">
+            <span class="source">
+                    <a id="embedded-source-link" href="#" target="_blank">
+                            <p>View full size</p>
+                    </a>
+            </span>
+            <span class="powered-logo">
+                    <a href="http://memolane.com/site" target="_blank">
+                            <img src="img/embedded/powered-by-memolane.png" />
+                    </a>
+            </span>
+    </div>
+</div>
+
+<div id="timeline-tooltip"></div>
+<div id="slot-loader-left" class="slot-loader"></div>
+<div id="slot-loader-right" class="slot-loader"></div>
+<div id="preMemoLeft" class="visibility-hidden"></div>
+<div id="preMemoRight" class="visibility-hidden"></div>
+
+<!-- DROPDOWNS  -->
+<!-- DROPDOWNS  -->
+
+<div id="dd-news" class="dd-container">
+	<div class="dd-content">
+		<div class="dd-list-content">
+			<ul>
+				<!--
+				<li class="clearfix new-news">
+					<div class="dd-news-item">
+					<a href="#" title="username"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /></a><a href="#">Johnlongname Doelonglastname</a> sent you a friend request!
+					</div>
+					<div class="dd-news-friend-request">
+						<a href="#" class="dd-news-friend-no" title="Deny Friendship Request">Deny</a>
+						<a href="#" class="dd-news-friend-yes" title="Confirm Friendship Request">Confirm</a>
+					</div>
+				</li>
+				-->
+
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- EOF NEWS DD -->
+
+
+<div id="dd-friends" class="dd-container">
+	<div class="dd-content">
+	
+		<!--  dd-lanes-title  -->
+		<div class="dd-friends-types">
+			<ul class="smallButtonBar">
+				<li><a id="dd-friends-main" href="#" class="smallButtonActive">Friends</a></li>
+				<li><a id="dd-friends-pending" href="#">Friend Requests Sent</a></li>
+			</ul>
+		</div>
+	
+
+		<div class="dd-list-content dd-friends-main-pane">
+			<ul>
+				<!--
+				<li class="clearfix">
+					<a href="#" title="view dashboard"><div class="dd-list-item"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="name-friends-DD">firstnamelongname lastnamelongname</span> <span class="user-name-friends-DD">(usernamelongusername)</span></div>
+					<a href="#" class="dd-friends-remove" title="remove friend">X</a>
+					</a>
+				</li>
+					-->
+			</ul>
+		</div>
+		
+		
+		<div class="dd-list-content dd-friends-pending-pane">
+			<ul>
+			<li>HELLO!</li>
+			</ul>
+		</div>
+
+
+
+		
+		
+
+		<div id="add-friends-dd">
+			<span>Edit friends from <a href="pioneerwxf"  title="Go to your dashboard">your dashboard</a><!-- FOR beyond h-bird 0.1, or</span>&nbsp;&nbsp;&nbsp;<a href="#" title="Add Friends" class="btn-orange">Add Friends</a>-->
+		</div>
+
+	</div>
+</div>
+<!-- EOF FRIENDS -->
+
+
+<div id="dd-lanes" class="dd-container">
+	<div class="dd-content">
+	
+<div class="dd-lanes-title">
+	<ul class="smallButtonBar"><li id="dd-your-lanes-btn"><a href="#" class="smallButtonActive">Your Lanes</a></li><li id="dd-fav-lanes-btn"><a href="#">Favorited Lanes</a></li></ul>	
+	</div>
+	
+		<div class="dd-list-content" id="dd-your-lanes">
+			<ul>
+				<!--
+				<li class="clearfix">
+					<a href="#" title="view lane"><div class="dd-list-item"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="lane-name-DD">Family Vacation to Spain</span></div>
+						<a href="#" class="dd-lanes-remove" title="delete lane">X</a>
+						<a href="#" class="dd-lanes-edit" title="edit lane">X</a>
+					</a>
+				</li>
+				-->			
+			</ul>
+		</div>
+
+		
+<div class="dd-list-content display-none" id="dd-fav-lanes">
+			<ul>
+			
+				<!--
+<li class="clearfix">
+					<a href="#" title="view lane"><div class="dd-list-item"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="lane-name-DD">Family Vacation to Spain</span></div>
+						<a href="#" class="dd-lanes-remove">X</a>
+					</a>
+				</li>
+-->
+							
+			</ul>
+		</div>
+
+		
+		<div id="edit-lanes-dd">
+			<span>Edit lanes from <a href="pioneerwxf" title="Go to your dashboard">your dashboard</a>
+		</div>
+
+	</div>
+</div>
+<!-- EOF LANES DROPDOWN -->
+
+<div id="dd-search">
+
+
+
+	<div id="search-types">
+		<ul class="smallButtonBar">
+			<li><a href="#" id="dd-search-memos" class="smallButtonActive">Memos</a></li>
+			<li><a href="#" id="dd-search-lanes"  >Lanes</a></li>
+			<li><a href="#" id="dd-search-users">Users</a></li>
+		</ul>
+	</div>
+	
+	<div class="search-filter search-filter-lanes">
+		<label id="search-lanes-filter-friends">
+			<input type="checkbox" value="friends">You &amp; Friends only
+		</label>
+	</div>
+
+	
+	<!-- FOR beyond h-bird 0.1
+	<div id="search-options">
+	<label><input type="checkbox" checked="checked">Only this lane</label>
+	<label><input type="checkbox">All of Memolane</label>
+	</div>
+	-->
+
+	
+	<div id="search-memos" class="search-results">
+		<div class='search-results-scrollable'>
+		<ul>
+			<!--
+			<li class="clearfix"><a href="#" title="view memo">
+				<div class="search-service-icon"></div>
+				<img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" class="search-user-avatar" title="view dashboard" />
+				<div class="search-memos-txt">This is some text from a search for memos</div>
+			</a></li>
+			<li class="clearfix"><a href="#" title="view memo">
+				<div class="search-service-icon"></div>
+				<img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" class="search-user-avatar" title="view dashboard" />
+				<div class="search-memos-txt">This is some text from a search for memosThis is some text from a search for memosThis is some text from a search for memosThis is some text from a search for memos</div>
+			</a></li>
+			<li class="clearfix"><a href="#" title="view memo">
+				<div class="search-service-icon"></div>
+				<img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" class="search-user-avatar" title="view dashboard" />
+				<div class="search-memos-txt">This is some text from a search for memos</div>
+			</a></li>
+			-->
+		</ul>
+	</div>
+	<div class='search-results-footer'>
+		<span class='search-results-footer-loader' id='search-memos-loader'>Loading...</span>
+		<span class='search-results-footer-hits' id='search-memos-hits'></span>
+	</div>
+	</div>
+	
+
+	
+	<div id="search-lanes" class="search-results">
+		
+		<div class='search-results-scrollable'>
+		<ul>
+		<!--
+			<li>
+				<a href="#" title="view lane"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="search-lanes-result">Family Vacation to Spain Family Vacation to Spain Family Vacation to Spain<span class="search-lanes-rel">(contributor)</span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="view lane"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="search-lanes-result">Family Vacation to Spain</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="view lane"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="search-lanes-result">Family Vacation to Spain Family Vacation to Spain Family Vacation to Spain Family Vacation to Spain Family Vacation to Spain Family Vacation to Spain<span class="search-lanes-rel">(owner)</span></span>
+				</a>
+			</li>
+			-->
+		</ul>
+		</div>
+	<div class='search-results-footer'>
+		<span class='search-results-footer-loader' id='search-lanes-loader'>Loading...</span>
+		<span class='search-results-footer-hits' id='search-lanes-hits'></span>
+	</div>
+	</div>
+	
+	
+	<div id="search-users" class="search-results">
+		<div class='search-results-scrollable'>
+		<ul>
+			<!--
+			<li>
+				<a href="#" title="view dashboard">		
+				<img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="search-users-result">Long Long Username Long Very Long<span class="search-users-username">(username)</span></span>
+					<a href="" class="request-friendship" title="request friendship">Request Friendship</a>
+				</a>
+			</li>
+			<li>
+				<a href="#" title="view dashboard"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="search-users-result">John Doe<span class="search-users-username">(username)</span></span>
+				<a href="" class="request-friendship" title="request friendship">Request Friendship</a>
+
+				</a>
+			</li>
+			<li>
+				<a href="#" title="view dashboard"><img src="img/defaults/avatar-20.gif" alt="topBarAvatar" width="20" height="20" /><span class="search-users-result">John Doe<span class="search-users-username">(username)</span></span>
+				<a href="" class="request-friendship" title="request friendship">Request Friendship</a>
+
+				</a>
+			</li>
+			-->
+		</ul>
+	</div>
+	<div class='search-results-footer'>
+		<span class='search-results-footer-loader' id='search-users-loader'>Loading...</span>
+		<span class='search-results-footer-hits' id='search-users-hits'></span>
+	</div>
+	</div>
+	
+	
+	
+</div>
+
+
+<!-- JavaScript at the bottom for fast page loading -->
+
+<!-- Thirdparty Scripts -->
+
+<script src="js/bundles/thirdparty.js"></script>
+
+
+
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<!-- inline JS for this html page  -->
+<script type="text/javascript">
+	m.csrf = 'C5cQ7sxoFTdGXLnmYmgy2Mr/2/nWnxI9vEaXm76Bx5Q=';
+	
+	//user info
+	
+		m.currentUser = {
+			userID : 'a8572477f04f51603eca0c66e70ba003',
+			username : 'pioneerwxf',
+			firstname : 'wang',
+			lastname: 'xianfeng',
+			avatar : 'pioneerwxf/image',
+			music_provider : 'amazon'
+		};
+	
+	
+	//lane data from server on page load
+	m.currentLane = {"id":"qsnh8zu7rl01r3nbh1i5603gjc77ywl1","user_id":"a8572477f04f51603eca0c66e70ba003","title":"New Lane","description":"","created_at":1320288248,"avatar":"http://memolane.com/lanes/qsnh8zu7rl01r3nbh1i5603gjc77ywl1/avatar","owner":{"first_name":"wang","image":"http://memolane.com/pioneerwxf/image","last_name":"xianfeng","username":"pioneerwxf","bio":null},"total_memos":18,"visible_memos":18,"first_memo":1219988231,"last_memo":1317439509,"memo_services":["facebook","feed"],"user_is_owner":true,"user_is_contributor":true,"available_contributors":[{"first_name":"wang","image":"http://memolane.com/pioneerwxf/image","last_name":"xianfeng","username":"pioneerwxf","bio":null,"role":"owner","is_friend":false,"selected":true}],"available_services":[{"service":"feed","selected":true},{"service":"facebook","selected":true}],"bounds":{"from":null,"to":null},"favorite":true};
+        m.currentLane.mode = 'view'
+
+        m.isEmbedded = ( window.top != window.self );
+        m.embeddedParams = {
+                background: '',
+                border: ''
+        };
+
+</script>
+
+
+<script src="js/bundles/app.js"></script>
+
+
+<!--Uservoice-->
+<script src="http://widget.uservoice.com/fO5unwVv9CLnO7nsgxYg.js"></script>
+<!--GOOGLE ANALYTICS-->
+<script type="text/javascript">
+
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-18503349-1']);
+ _gaq.push(['_setDomainName', '.memolane.com']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+
+</body>
+</html>

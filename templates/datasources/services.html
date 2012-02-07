@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="{{ STATIC_URL }}timepaw/css/bundles/services.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block headjs %}
+<script src="{{ STATIC_URL }}timepaw/js/bundles/services.js"></script>
+{% endblock %}
+
+{% block title %}设置Timepaw|{% endblock %}
+
+{% block content %}
+<div id="header" class="more1024">
+	
+	<div id="top-bar">
+	
+		<h1><a href="/home#latest">TimePaw</a></h1>
+		
+		{% include "nav.html" %}
+		
+	</div>
+
+</div>
+
+
+<div id="content" class="content">
+	
+	<div id="innerContent">
+		
+		<h1 class="header typeA">接入时光源</h1>
+		
+		<div id="services-all">
+			<div class="services-available">
+				<h2>目前可提供的时光源--<a href="http://blog.timepaw.com/wanted_link/" target="_blank">告诉我们你想要接入的网络</a></h2>
+				<ul>
+					<!-- IMPORTANT: the service names listed as classes on the <a> MUST match up to account.service in the database (or the "adding" state can't be removed -->
+					<li>
+						<a class="facebook-pages" href="/datasources/renren_add" title="授权后将会同步您在人人网的日志、状态和相册">
+							<img src="{{ STATIC_URL }}timepaw/img/common/services/renren.png">
+							<span class="add-service"><span class="defaultText">添加</span><span class="addingText">添加</span><span class="add-service-icon add"></span></span>
+						</a>
+					</li>
+					<li>
+						<a class="facebook" href="/datasources/weibo_add" title="授权微博账号">
+							<img src="{{ STATIC_URL }}timepaw/img/common/services/weibo.png">
+							<span class="add-service"><span class="defaultText">添加</span><span class="addingText">添加</span><span class="add-service-icon add"></span></span>
+						</a>
+					</li>
+						
+					<li>
+						<a class="flickr" href="/datasources/tqq_add" title="授权后将会同步您的腾讯微博原创内容">
+							<img src="{{ STATIC_URL }}timepaw/img/common/services/tqq.png">
+							<span class="add-service"><span class="defaultText">添加</span><span class="addingText">添加</span><span class="add-service-icon add"></span></span>
+						</a>
+					</li>
+					
+					<li>
+						<a class="twitter" href="/datasources/douban_add" title="授权后将会同步您在豆瓣网的日记、书评，影评和阅读信息">
+							<img src="{{ STATIC_URL }}timepaw/img/common/services/douban.png">
+							<span class="add-service"><span class="defaultText">添加</span><span class="addingText">添加</span><span class="add-service-icon add"></span></span>
+						</a>
+					</li>
+					<li>
+						<a class="flickr" href="/datasources/rss_add" title="添加RSS">
+							<img src="{{ STATIC_URL }}timepaw/img/common/services/rss.png">
+							<span class="add-service"><span class="defaultText">添加</span><span class="addingText">添加</span><span class="add-service-icon add"></span></span>
+						</a>
+					</li>
+					<li>
+						<a class="flickr" href="/datasources/taobao_add" title="授权后将会同步您在淘宝的交易记录">
+							<img src="{{ STATIC_URL }}timepaw/img/common/services/taobao.png">
+							<span class="add-service"><span class="defaultText">添加</span><span class="addingText">添加</span><span class="add-service-icon add"></span></span>
+						</a>
+					</li>
+					
+    				</ul>
+			</div>
+			
+			<div class="services-added">
+				<h2>已接入的时光源--(刚刚接入的时光源将在1分钟后获得数据) </h2>
+                	<ul>
+				{% for datasource in datasources %}
+				<li id="{{ datasource.source_name}}">
+					<div class="serviceAdded {{ datasource.source_name}}">
+						<div>			
+							<div class="serviceInfo float-left" style="margin-left:50px;"> 
+								<h3>{{ datasource.account_name}}</h3> 
+								<div class="memo_icon memo_privacy memo_private">独家私有</div> 
+							</div> 
+							<div class="serviceControls float-right"> 
+								<div class="serviceHealth"><span class="deletingText">删除</span></div> 
+								<a href="/datasources/delete/{{datasource.id}}" onclick="{if(confirm('确定要取消接入吗? \n这样服务器将删除您已有的信息！')){return true;}return false;}"><div class="getNewContentBtn getNewContent smallTooltip float-right sml-btn-grey">取消接入</div> </a>
+								<!--<a href="/sync/{{datasource.id}}" ><div class="advancedBtn">立即同步</div></a> -->
+							</div> 
+						</div> 
+					</div>
+					<div class="serviceSettings" style="display: none; "> 
+						<div class="serviceSettingsContent"> 
+							<ul> 
+								<li> 
+									<a href="#" class="btn-green setPrivacy">设置私有</a> 
+								</li>
+								<li> 
+									<a href="#" class="btn-green refreshService">重新同步</a> 
+								</li> 
+								<li> 
+									<a href="#" class="btn-green removeService">取消接入</a> 
+								</li> 
+							</ul> 
+						</div> 
+					</div>
+				</li>
+				{% endfor %}
+			</ul>
+            	</div>
+	</div>
+		
+	</div>
+
+</div>
+
+
+<!-- JavaScript at the bottom for fast page loading -->
+
+<!-- Thirdparty Scripts -->
+
+<script src="{{ STATIC_URL }}timepaw/js/bundles/thirdparty.js"></script>
+
+
+
+
+<!-- inline JS for this html page  -->
+<script type="text/javascript">
+	m.csrf = "fkOCeI2LvviHeASRYMsIRQT39Dpv3lGgW0QhItWcv0Y=";
+
+	
+	m.currentUser = {
+		userID : 'a8572477f04f51603eca0c66e70ba003',
+		username : 'pioneerwxf',
+		firstname : 'wang',
+		lastname: 'xianfeng',
+		avatar : 'pioneerwxf/image'
+	};
+	
+	
+</script>
+
+{% endblock %}

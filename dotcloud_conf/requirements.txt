@@ -1,0 +1,5 @@
+Django
+oauth2
+feedparser
+PIL
+django-celery

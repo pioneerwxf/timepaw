@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="{{ STATIC_URL }}timepaw/css/bundles/app.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block headjs %}
+<script src="{{ STATIC_URL }}timepaw/js/bundles/thirdparty.js"></script>
+{% endblock %}
+
+{% block title %}我的时光机|{% endblock %}
+
+{% block content %}
+
+<div id="header" class="more1024">
+	 
+	<div id="top-bar">
+		<h1><a href="/">TimePaw</a></h1>
+		{% include "nav.html" %}			
+	</div>
+
+
+</div>
+	
+<div id="lane-drawer">
+	<div id="lane-drawer-content" style="height: 179px; overflow: hidden; padding: 0px; width: 270px;" class="jspScrollable" tabindex="0">
+		<div class="jspContainer" style="width: 270px; height: 179px;">
+			<!--<div class="jspPane" style="padding: 0px; top: 0px; width: 250px;">
+				<img height="37" width="37" class="lane-drawer-avatar" alt="laneDrawerAvatar" src="http://www.gravatar.com/avatar/{{gravatar}}?s=120">
+					<h2 class="header lane-drawer-title"></h2>
+					<p class="lane-drawer-description clearfix"></p>
+					<div class="lane-drawer-section">
+						<div class="lane-drawer-section-title">时光机内容来自:</div>
+					</div>
+					<ul style="margin: 7px 0pt 5px 5px;" class="services-used">
+						
+					</ul>
+					<div class="lane-drawer-date-range clearfix">
+						<div class="lane-drawer-date-range-txt">第一只爪印: <strong>2009-10-10</strong></div>
+						<div class="lane-drawer-date-range-txt">最后一只爪印: <strong>2011-12-12</strong></div>
+					</div>
+					<div class="lane-drawer-section">
+						<div class="lane-drawer-section-title">记录者:</div>
+					</div>
+					
+			</div>
+			<div class="jspVerticalBar">
+				<div class="jspCap jspCapTop"></div>
+				<div class="jspTrack" style="height: 175px;">
+					<div class="jspDrag" style="height: 126px;">
+						<div class="jspDragTop"></div>
+						<div class="jspDragBottom"></div>
+					</div>
+				</div>
+				<div class="jspCap jspCapBottom"></div>
+			</div>-->
+		</div>
+	</div>
+
+	<div id="lane-drawer-tab"><span>
+		<img src="{{ STATIC_URL }}timepaw/img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /><img src="{{ STATIC_URL }}timepaw/img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /></span>
+	</div>
+</div>
+
+<div id="content" style="word-break:break-all;">
+	<div id="screenLeftBtn" style="visibility: visible; left: 0px; height: 217px; width: 25px; opacity: 0.6; overflow-x: hidden; overflow-y: hidden;" class="screenBtn"><span><img src="{{ STATIC_URL }}timepaw/img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /><img src="{{ STATIC_URL }}timepaw/img/common/arrowLeft.png" alt="arrowLeft" width="6" height="11" /></span></div>
+	<div id="screenRightBtn" style="visibility: visible; display: block; height: 217px; width: 25px; opacity: 0.6; " class="screenBtn"><span><img src="{{ STATIC_URL }}timepaw/img/common/arrowRight.png" alt="arrowLeft" width="6" height="11" /><img src="{{ STATIC_URL }}timepaw/img/common/arrowRight.png" alt="arrowLeft" width="6" height="11" /></span></div>
+	<div id="lane-viewport" style="visibility: visible; height: 262px; cursor: default; ">
+		<div id="shadow"></div>
+		<div id="lane">
+			
+			<div class="lane-slot" id="begin">
+				<div class="lane-circle"></div>	
+				<div class="lane-slot-title">...从前</div>	
+				<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+				<div class="memo timepaw" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+				<div class="memoTitleBar">     
+					<div class="memoServiceIcon"></div>     
+				</div>
+				
+				<div class="memoContent">     
+					<div class="memoHeaderHTML">Timepaw 为你收藏过去</div>       
+					<p>
+					从前的历史，Timepaw已经无从知晓了...尝试添加更多网络来获得更多历史吧<a href="/datasources/">设置时光机</a>
+					</p>   
+				</div>
+				
+				</div>
+				</div>
+			</div>
+		{% for day_paws in dict_paws %}
+			<div class="lane-slot" id="{{ day_paws.0.create_time|date:"Ymd" }}">	
+				<div class="lane-circle"></div>	
+				<div class="lane-slot-title"><a target="_blank" title="翻翻日记本" href="/dairy?date={{ day_paws.0.create_time|date:"Ymd" }}">{{ day_paws.0.create_time|date:"Y年，n月j日" }}</a></div>	
+				<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+				{% for paw in day_paws %}	
+					{% if paw.type == "douban note" or paw.type == "douban review" or paw.type == "rss" or paw.type == "renren blog" %}
+					<div class="memo {{paw.type}}" id="paw_{{paw.id}}" onclick="openPaw('{{paw.title}}','{{ paw.create_time|date:"H:i"}}','{{paw.type}}','paw_{{paw.id}}','{{ day_paws.0.create_time|date:"Ymd" }}');" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+						<div id="paw_{{paw.id}}_content" style="visibility:hidden;display:none;">{% autoescape off %} {{paw.content|linebreaks}}{% endautoescape %}
+							<br />
+							{% for pic in paw.images %}
+							<div class="memoContent fixed-photo-height">    
+								<img style="border:0px solid #CCC;" src="{{pic.original.url}}" />
+							</div>    
+							{% endfor %}
+						</div>
+						<div class="memoTitleBar">     
+							<div class="memoServiceIcon"></div>     
+						</div>
+						
+						<div class="memoContent">     
+							<div class="memoHeaderHTML">{{paw.title}}</div>       
+							<p>
+							{% if paw.type == "rss" %}
+							{% autoescape off %} {{ paw.content|truncatewords_html:10}} {% endautoescape %}
+							{% else %}
+							{% autoescape off %} {{ paw.summary|truncatewords_html:10}} {% endautoescape %}
+							{% endif %}
+							{% for pic in paw.images %}
+							<div class="memoContent fixed-photo-height">    
+								<img style="width:195px; height:auto; border:0px solid #CCC;" src="{{pic.original.url}}" />
+							</div>    
+							{% endfor %}
+							</p>   
+						</div>
+						
+						<div class="memoFooterBar">     
+							<ul class="memoOwnerActions">    
+								<li><div class="memo_icon memo_privacy memo_private">private</div></li>
+								<li>{{ paw.create_time|date:"H:i" }}</li>
+							</ul>   
+						</div>
+						
+					</div>
+					
+					{% else %}
+					{% if paw.type == "renren album" %}
+						{% for pic in paw.images %}
+						<div class="memo {{paw.type}}" id="pic_{{pic.id}}" onclick="openPaw('{{paw.title}}','{{ paw.create_time|date:"H:i"}}','{{paw.type}}','pic_{{pic.id}}','{{ day_paws.0.create_time|date:"Ymd" }}');" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+							<div id="pic_{{pic.id}}_content" style="visibility:hidden;display:none;">{% autoescape off %} {{pic.title}}{% endautoescape %}<br />
+								<img style="border:0px solid #CCC;" src="{{pic.original.url}}" />
+							</div>
+							<div class="memoTitleBar">     
+								<div class="memoServiceIcon"></div>     
+							</div>
+							<div class="memoContent"> 
+							<div class="memoHeaderHTML">{{paw.title}}</div>
+							<p> {{pic.title}}
+								<div class="memoContent fixed-photo-height">    
+									<img style="width:195px; height:auto; border:0px solid #CCC;" src="{{pic.original.url}}" />
+								</div>
+							</p>
+							</div>
+							<div class="memoFooterBar">     
+								<ul class="memoOwnerActions">    
+									<li><div class="memo_icon memo_privacy memo_private">private</div></li>
+									<li>{{ pic.upload_time|date:"H:i" }}</li>
+								</ul>   
+							</div>
+						</div>
+						{% endfor %}
+
+					{% else %}
+					
+					<div class="memo {{paw.type}}" id="paw_{{paw.id}}" onclick="openPaw('','{{ paw.create_time|date:"H:i"}}','{{paw.type}}','paw_{{paw.id}}','{{ day_paws.0.create_time|date:"Ymd" }}');" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+						<div id="paw_{{paw.id}}_content" style="visibility:hidden;display:none;">{% autoescape off %} {{paw.content}}{% endautoescape %}<br />
+							{% for pic in paw.images %}
+							<div class="memoContent fixed-photo-height">    
+								<img style="border:0px solid #CCC;" src="{{pic.original.url}}" />
+							</div>
+							{% endfor %}
+						</div>
+						<div class="memoTitleBar">     
+							<div class="memoServiceIcon"></div>     
+						</div>      
+						<div class="memoContent">     
+							<p>
+							{% autoescape off %} {{ paw.content|linebreaks }} {% endautoescape %}
+							{% for pic in paw.images %}
+							<div class="memoContent fixed-photo-height">    
+								<img style="width:195px; height:auto; border:0px solid #CCC;" src="{{pic.original.url}}" />
+							</div>
+							{% endfor %}
+							</p>   
+						</div>
+						<div class="memoFooterBar">     
+							<ul class="memoOwnerActions">    
+								<li><div class="memo_icon memo_privacy memo_private">private</div></li>
+								<li>{{ paw.create_time|date:"H:i" }}</li>
+							</ul>   
+						</div>
+					</div>
+					
+					{% endif %}
+					{% endif %}
+				{% endfor %}
+
+				</div>
+			</div>
+		{% endfor %}
+			<div class="lane-slot" id="latest" style="width:500px;">
+				<div class="lane-circle"></div>	
+				<div class="lane-slot-title">明天...</div>	
+				<div class="lane-slot-memos isotope" style="position: relative; height: 261px; width: 220px; overflow-x: hidden; overflow-y: hidden; ">
+				<div class="memo timepaw" style="position: absolute; left: 20px; top: 20px; cursor: pointer; "> 
+				<div class="memoTitleBar">     
+					<div class="memoServiceIcon"></div>     
+				</div>
+				
+				<div class="memoContent">     
+					<div class="memoHeaderHTML">Timepaw 为你续写未来</div>       
+					<p>
+					加入更多网络，拥有多更精彩回忆：<a href="/datasources/">设置时光机</a>
+					</p>   
+				</div>
+				
+				</div>
+				</div>
+			</div>
+			
+
+		</div>
+		
+		<div id="myPaw" class="openPaw rss" style="position:absolute; visibility: hidden; height: 286px; width: 600px; top: 40px; left: 300px; cursor: text;">
+			<div class="largeMemoTitleBar"><div id="dairy_link" class="thumbText"></div>
+			<a class="closeOpenMemo" onclick="closePaw('myPaw');">close</a>
+			</div>
+			<div class="largeMemoContent" id="openPawContent" style="height: 225px; ">
+				<div class="memoHeaderHTML" id="pawTitle"> </div>
+				<div class="memoIncomingHTML" id="pawContent">	</div>
+			</div>
+		<div class="largeMemoFooterBar">
+			<div class="leftFade"></div>  <div class="rightFade"></div>
+			<!--<ul class="memoOwnerActions">
+				<li><a href="#" title="=&quot;Privacy" settings"="" class="memo_action memo_privacy memo_friends">friends</a></li>
+				<li><a href="#" class="memo_action memo_laneAdd" title="Add to Lane">Add to Lane</a></li>
+				<li><a href="#" class="memo_action memo_laneRemove" title="Remove from Lane">Remove from Lane</a></li>
+			</ul> -->
+			<div class="memo_dateAdded" id="pawPublished"></div>
+		</div>
+			<!--<ul class="memoActions">
+				<li><a href="#" title="Share this memo" data-share-text="Check out this memo on memolane" data-share-dialog-text="Share memo on" data-share-link="/pioneerwxf/New%20Lane?breakCache=1322888302582#time=1302528940&amp;memo=a8572477f04f51603eca0c66e70ba003feedhttpwwwwangxianfengcomfeedrss2httpwwwwangxianfengcom20110411%e8%a1%a8%e7%8e%b0%e8%80%85%e4%b8%8e%e5%ae%9e%e5%8a%9b%e6%b4%be" class="memo_action memo_share shareURL">Share</a></li>
+			</ul>-->
+			
+		</div>
+	</div>
+
+	<div id="timeline">
+		<a href="/home#begin" id="timelineBeginDate">从前</a>
+		
+		<div id="timelineCurrent" style="left:650px;">
+			<div class="timelineIndicator">&nbsp;</div>
+			<span id="timelineDate">Jan 1, 2000</span>
+		</div>
+		<div href="#" id="timelineHover" style="left:250px;">
+			<div class="timelineIndicator">&nbsp;</div>
+		</div>
+		<a href="/home#latest" id="timelineEndDate">现在</a>
+	</div>
+	
+</div>
+
+<div id="timeline-tooltip" style="left: 86px; display: block; "></div>
+
+
+
+</div>
+
+<script type="text/javascript">
+	m.csrf = 'C5cQ7sxoFTdGXLnmYmgy2Mr/2/nWnxI9vEaXm76Bx5Q=';
+	
+	//user info
+	
+		m.currentUser = {
+			userID : '1',
+			username : 'pioneerwxf',
+			firstname : 'wang',
+			lastname: 'xianfeng',
+			avatar : 'pioneerwxf/image',
+			music_provider : 'amazon'
+		};
+	
+	
+	//lane data from server on page load
+	m.currentLane = {"id":"qsnh8zu7rl01r3nbh1i5603gjc77ywl1","user_id":"1","title":"home","description":"","created_at":1320288248,"avatar":"http://www.gravatar.com/avatar/{{gravatar}}?s=120","owner":{"first_name":"wang","image":"http://www.gravatar.com/avatar/{{gravatar}}?s=80","last_name":"xianfeng","username":"pioneerwxf","bio":null},"total_memos":18,"visible_memos":18,"first_memo":{{ start_date }},"last_memo":{{ end_date }},"memo_services":["facebook","feed"],"user_is_owner":true,"user_is_contributor":true,"available_contributors":[{"first_name":"wang","image":"http://timepaw.com/pioneerwxf/image","last_name":"xianfeng","username":"pioneerwxf","bio":null,"role":"owner","is_friend":false,"selected":true}],"available_services":[{"service":"feed","selected":true},{"service":"facebook","selected":true}],"bounds":{"from":null,"to":null},"favorite":true};
+        m.currentLane.mode = 'view'
+
+        m.isEmbedded = ( window.top != window.self );
+        m.embeddedParams = {
+                background: '',
+                border: ''
+        };
+
+</script>
+
+
+<script src="{{ STATIC_URL }}timepaw/js/bundles/app.js"></script>
+
+<script lang="javascript">
+  function openPaw(pawtitle,pawpublished,pawstyle,currentPawId,currentDayId){
+	var pawId = document.getElementById("myPaw");
+	var dairyLink = document.getElementById("dairy_link");
+	var openPawContent = document.getElementById("openPawContent");
+	var pawContent = document.getElementById("pawContent");
+	var pawTitle = document.getElementById("pawTitle");
+	var pawPublished = document.getElementById("pawPublished");
+	
+	var currentDay = document.getElementById(currentDayId);
+	var currentPaw = document.getElementById(currentPawId);
+	var Day_offset=currentDay.offsetLeft;
+	var Paw_offset = currentPaw.offsetLeft;
+	if (pawtitle=='')
+		pawTitle.style.visibility = "hidden";
+	else{
+		pawTitle.style.visibility = "visible";
+		pawTitle.innerHTML = pawtitle;
+	}
+	var pawcontent = document.getElementById(currentPawId+"_content").innerHTML;
+	pawContent.innerHTML = pawcontent;
+	pawPublished.innerHTML = "发布于："+currentDayId+","+pawpublished;
+	
+	pawId.className = "openPaw "+pawstyle;
+	pawId.style.left = (Day_offset+Paw_offset)+"px";
+	var dateArray = currentDayId.split("-");
+	var date = dateArray.join("");
+	dairyLink.innerHTML = "<a href='/dairy?date="+date+"#"+pawpublished+"' class='memoServiceIcon' target='_blank'>进入日记本</a> "
+	if (window.innerHeight)
+		winHeight = window.innerHeight;
+	else if ((document.body) && (document.body.clientHeight))
+		winHeight = document.body.clientHeight;
+	pawId.style.height = (winHeight-250)+"px";
+	openPawContent.style.height = (winHeight-250-61)+"px";
+	pawId.style.visibility = "visible";
+	pawId.style.display = "block";
+  }
+  
+    
+  function closePaw(pawid){
+	var pawId = document.getElementById(pawid);
+	pawId.style.visibility = "hidden";
+	pawId.style.display = "none";
+  }
+  
+  jQuery(document).ready(function(){
+				
+				//jQuery(".slides_control img").height("auto");
+
+				
+			});
+</script>
+
+{% endblock %}

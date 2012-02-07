@@ -1,0 +1,56 @@
+Run
+=====
+
+Local
+-----
+python manage.py runserver
+python manage.py celeryd -E -l info -c 2
+
+Server
+-----
+python current/timepaw/manage.py celeryd -E -l info -c 5
+
+
+Broker Management
+=====
+
+Local
+-----
+rabbitmqctl delete_vhost test_timepaw_local_{ id }
+rabbitmqctl add_vhost test_timepaw_local_{ id }
+rabbitmqctl set_permissions -p test_timepaw_local_{ id } timepaw_test ".*" ".*" ".*"
+
+Server
+-----
+rabbitmqctl delete_vhost test_timepaw
+rabbitmqctl add_vhost test_timepaw
+rabbitmqctl set_permissions -p test_timepaw timepaw_test ".*" ".*" ".*"
+
+
+DB Management
+=====
+
+python current/timepaw/manage.py shell
+from timepaw.profiles.models import Profile
+Profile.objects.all()[0].datasource_set.all().delete()
+
+
+Vagrant on Lion
+=====
+
+In your temp dir for install apps
+-----
+
+sudo gem update --system
+sudo gem install vagrant
+sudo gem update
+git clone git://github.com/mitchellh/vagrant.git
+cd vagrant
+sudo gem install bundler
+bundle install
+sudo rake install
+
+In your project dir
+-----
+
+vagrant init

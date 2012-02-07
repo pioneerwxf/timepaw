@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+{% extends "base.html" %}
+{% block css %}
+<link href="{{ STATIC_URL }}timepaw/css/global.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block title %}欢迎来到{% endblock %}
+
+{% block content %}
+<!-- Header  -->
+<div id="top-bar">	
+	<div class="utility"></div>
+	<div class="nav">
+		<h1><a href="/" id="home_link">Timepaw</a></h1>
+		{% if is_logged_in %}
+		<a href="/home#latest" class="btn-green float-right" style="display:block;margin-top:10px;">返回我的时光机</a>
+		{% else %}
+		<a href="/login" class="float-right" style="display:block;margin-top:16px;">登录</a>
+		<span class="float-right" style="display:block; margin:16px 7px 0 3px">or</span>
+		<a href="/signup" class="btn-green float-right" style="margin-right: 5px;display:block;margin-top:11px;">注册</a>
+		<div class="float-right">从现在开始,拥有你的独家传记、相册和语录</div>
+		{% endif %}
+	</div>
+</div>
+<!-- Intro -->
+<div class="intro">
+	<h2 style="font-size:35px;">找回过去每个值得留恋的瞬间</h2>
+	<p>timepaw以优美的时间线为您展示并永久存储过去的所有日志，微博，和照片</p>
+	<div style="clear:both;height:0;overflow:hidden;"></div>
+	<div class="video"><img style="width:720px; height:480px; border:1px solid #999;" src="{{ STATIC_URL }}/timepaw/images/ads.png" /></div>
+</div>
+
+
+<!-- What is timepaw? -->
+<div class="whatis">
+	<h2 style="margin-bottom:20px; color:#fff;">TimePaw是一本写给自己的回忆录</h2>
+	<div>
+		<h3>我们连接你所有网络的日志照片和微博到一个平台</h3>
+		<p>目前支持的网络有: 新浪微博,腾讯微博,人人网,豆瓣网,RSS源,淘宝网;</br>后续将逐步支持: QQ空间,新浪博客,博客大巴,EverNote,GitHub,Twitter,Facebook...</br><a href="http://blog.timepaw.com/wanted_link/">告诉我们你还想连接的网络？</a></p>
+	</div>
+	<div>
+		<h3>我们尊重隐私, 永久存储.这是属于你自己的天地</h3>
+		<p>在喧嚣的社交网络中，TimePaw将是你永远的隐私地带，这里没有关注，留言和评论，这里只有你自己的原创内容！</br>保证您的数据安全和隐私是我们最高的使命!</br><a href="http://blog.timepaw.com/how_privacy/">如何保证隐私？</a></p>
+	</div>
+	<div>
+		<h3>人人都可以出版自己的</br>传记、相册和语录</h3>
+		<p>我们将你其他网络的日志、微博和相册按照你喜欢的方式组合成精美的传记，语录和影集。</br>生日，新年，当然任何时候，你都可以选择将他们出版和冲印作为永久的回忆珍藏，传承。</br><a href="http://blog.timepaw.com/demo/">看看展示效果？</a></p>
+	</div>
+</div>
+
+<!-- Footer -->
+
+{% include "footer.html" %}
+{% endblock %}

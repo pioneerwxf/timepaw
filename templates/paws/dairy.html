@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+	<!-- BEGIN head -->
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<!-- Meta Tags -->
+
+	<!-- Title -->
+	<title>日记本</title>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ STATIC_URL }}timepaw/css/dairy.css" type="text/css" media="screen">
+
+	<!-- RSS & Pingbacks -->
+	<meta name="robots" content="noindex,nofollow">
+	<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/l10n.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/jquery-ui-1.8.5.custom.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/superfish.js"></script>
+
+	<style type="text/css">
+	#logo img { -moz-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; }
+
+	#logo img:hover {
+	-moz-transform: rotate(-30deg);
+	-o-transform: rotate (-30deg);
+	transform: rotate(-30deg);
+	-webkit-transform: rotate(-30deg);
+	}
+	a,
+	.entry-title a:hover,
+	.page-title a:hover,
+	h1.entry-title a:hover,
+	h2.entry-title a:hover,
+	.comment-author cite a:hover,
+	#sidebar a:hover,
+	.format-link .post-header a:hover {
+		color: #00bff3;
+	}
+	.flickr_badge_image img:hover,
+	.bypostauthor .avatar {
+	border-color: #fa6274;
+	}
+	</style>
+	<link rel="shortcut icon" href="{{ STATIC_URL }}timepaw/favicon.ico">
+
+<!-- END head -->
+	<style type="text/css">/*#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}*/</style>
+	</head>
+
+<!-- BEGIN body -->
+<body class="home blog">
+	<!-- BEGIN #header -->
+	<div id="header" class="clearfix">
+	<div id="top-bar">
+		<h1><a href="/">TimePaw</a></h1>
+		<div class="top-bar-logged-in user-is-logged-in" style="display: block; ">
+			<div class="top-bar-section top-bar-btn">
+				<a id="tb-dashboard" href="/home#latest"><img style="border:none;" src="http://www.gravatar.com/avatar/{{gravatar}}?s=80&d=http%3A%2F%2Fwww.timepaw.com%2Fstatic%2Ftimepaw%2Fimages%2Favatar.png" alt="topBarAvatar" width="23" height="23" /><span class="for-m-1024">我的时光机</span></a>
+			</div>
+			
+			<div class="top-bar-section top-bar-btn">
+				<a id="tb-dashboard" href="/dairy"><img style="border:none;" src="{{ STATIC_URL }}timepaw/img/topBar/dairy.png" alt="" width="23" height="23" alt="日记本" /><span class="for-m-1024">我的日记本</span></a>
+			</div>
+			
+			<div class="top-bar-section top-bar-btn">
+				<a id="tb-dashboard" href="/datasources/"><img style="border:none;" src="{{ STATIC_URL }}timepaw/img/topBar/settings.png" alt="" width="23" height="23" alt="日记本" /><span class="for-m-1024">时光机设置</span></a>
+			</div>
+						
+			<div class="top-bar-section top-bar-btn" style="float:right;">
+				<a id="tb-dashboard" href="/logout" title="登出TimePaw" style="padding:0 12px 0 32px;"><img style="border:none; background:none; left:12px;" src="{{ STATIC_URL }}timepaw/img/topBar/logout.png" alt="登出TimePaw" width="23" height="23" /></a>
+			</div>
+		</div>
+			
+	</div>
+	<!-- END #header -->
+	</div>
+	
+<!-- BEGIN #page_content -->
+<div id="page_content">
+<!-- BEGIN #container -->
+<div id="container">
+<!--BEGIN #content -->
+<div id="content" class="clearfix">
+					
+<!--BEGIN #primary .hfeed-->
+<div id="primary" class="hfeed">			
+							
+{% for paw in all_paws %}
+
+<!--BEGIN .hentry -->
+
+<div class="post-{{paw.id}} post type-post status-publish format-quote hentry category-uncategorized tag-quote" id="{{ paw.create_time|date:"H:i" }}">
+	
+	{% if paw.type == "renren album" %}
+	<!--BEGIN .post-header -->
+	<div class="post-header {{paw.type}}">
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				jQuery("#slider-{{ paw.id }}").slides({
+					preload: true,
+					preloadImage: jQuery("#slider-{{ paw.id }}").attr('data-loader'), 
+					generatePagination: false,
+					generateNextPrev: true,
+					effect: 'fade',
+					crossfade: true,
+					autoHeight: true,
+					bigTarget: true
+				});
+				jQuery(".slides_control img").height("auto");
+
+				
+			});
+			
+		</script>
+	    
+		<!--BEGIN .slider -->
+		
+		<div id="slider-{{ paw.id }}" class="slider" data-loader="/wp-content/themes/memo/images/ajax-loader.gif">
+	
+		<div class="slides_container clearfix">
+		{% for pic in paw.images %}
+			<div>
+				<img style="height:400px; max-height:400px; max-width:600px;" alt="" src="{{ pic.original.url }}">
+			</div>
+			{% endfor %}
+		</div>
+	
+		<!--END .slider -->
+		</div>
+		<a title="Permanent Link to The Hidden Message of Jingle Bells" href="/?p=835"></a>
+		<span class="hanger-left"></span>
+		<span class="hanger-right"></span>
+	<!--END .post-header -->
+	</div>
+
+	{% else %}
+	{% if paw.type == "douban note" or paw.type == "douban review" or paw.type == "rss" or paw.type == "renren blog" %}
+	<div class="post-header">
+		<blockquote>{{ paw.title }}.</blockquote>
+		<span class="hanger-left"></span>
+		<span class="hanger-right"></span>
+	</div>
+	{% else %}
+	
+	<!--BEGIN .post-header -->
+	{% for pic in paw.images %}
+
+	<div class="post-header">
+		<a title="Timepaw" href="#">
+			<img  src="{{pic.original.url}}" class="attachment-tz_featured wp-post-image" style="max-width: 600px;" title="{{paw.content}}">
+		</a>
+		<span class="hanger-left"></span>
+		<span class="hanger-right"></span>
+	<!--END .post-header -->
+	</div>
+	{% endfor %}
+	{% endif %}
+	{% endif %}
+	
+	<!--BEGIN .entry-header-->
+	<div class="entry-header">
+		<h2 class="entry-title">
+			<a href="#" rel="bookmark" title="{{ paw.title }}">
+				{{ paw.create_time|date:"Y年n月j日,  l,  H:i" }}
+			</a>
+		</h2>
+
+	<!--END entry-header -->
+	</div>
+
+
+	<!--BEGIN .entry-content -->
+	<div class="entry-content clearfix">
+	{% autoescape off %} {{ paw.content|linebreaks }} {% endautoescape %}
+
+	<!--END .entry-content -->
+	</div>
+
+	<!--BEGIN .entry-footer-->
+	<div class="entry-footer clearfix">
+		<span class="entry-permalink">
+			<a href="#">原始链接</a>
+		</span>
+		<!--<span class="entry-tags">/&nbsp;&nbsp;Tagged: <a href="#" rel="tag">Standard</a>
+		</span>
+		<span class="entry-like">
+			<a href="#" class="likeThis" id="like-795">
+				<span class="icon"></span>
+				<span class="count">287</span>
+			</a>
+		</span>
+		<span class="entry-comments"><a href="#">5</a></span>-->
+	<!--END .entry-footer-->
+	</div>                
+<!--END .hentry-->  
+</div>
+{% endfor %}
+
+
+<!--END #primary .hfeed-->
+</div>
+
+
+<!-- END #content -->
+</div>
+		
+<!-- END #container -->
+</div> 
+
+
+
+<!--BEGIN #sidebar .aside-->
+<div id="sidebar" class="aside">
+
+	<!-- BEGIN #logo -->
+	<div id="logo">
+		<a href="/dairy" ><img src="{{ STATIC_URL }}timepaw/images/dairy/logo.png" alt="随机展示你的日记" width="160" height="160"></a>
+	<!-- END #logo -->
+	</div>
+	<a href="/dairy" style="cursor:pointer;">
+	<div id="current_date" style="position:fixed;  top:120px; margin-left:60px; color:#fff; z-index:1;">
+		<h1 style="color:#fff; font-size:40px; width:120px; margin-bottom:20px; text-align:center;">{{ current_day|date:"Y"}}</h1>
+		<h3 style="color:#fff; font-size:24px; width:120px; text-align:center;">{{ current_day|date:"n月j日" }}</h3>
+	</div>
+	</a>
+	<!--BEGIN .navigation .page-navigation -->
+	<div class="navigation page-navigation">
+		<div class="nav-next"><a title="前一天" href="dairy?date={{ prev_date }}" class="nextpostslink">前一天</a></div>
+		<div class="nav-previous"><a title="后一天" href="dairy?date={{ next_date }}" class="nextpostslink">后一天</a></div>
+	<!--END .navigation .page-navigation -->	
+	</div>
+	
+	<div id="text-3" class="widget widget_text">			
+		<div class="textwidget"><p>Timepaw私人日记本,找回过去的美好瞬间~</p></div>
+		<!--<div class="textwidget"><p>今天是2011-11-11日</p></div>
+		<div class="textwidget"><p>一共在人人写了一片博客</br>在豆瓣写了一片博客</br>在微博写了一片博客</br></p></div>-->
+	</div>
+	<div id="search-3" class="widget widget_search"><!--BEGIN #searchform-->
+		<form method="get" id="searchform" action="/Memo.html">
+			<fieldset>
+				<input type="text" name="s" id="s" value="搜寻记忆..." onfocus="if(this.value==&#39;Search...&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;Search...&#39;;">
+			</fieldset>
+		<!--END #searchform-->
+		</form>
+	</div>
+	<!--BEGIN #back-to-top -->
+	<a id="back-to-top" href="/#">Back to Top</a>
+	<!--END #back-to-top -->
+
+<!--END #sidebar .aside-->
+</div>
+
+<!-- END #page_content -->
+</div>
+
+	
+	
+	
+<!-- BEGIN #footer -->
+<div id="footer" class="clearfix">
+	
+		
+<p class="credit">
+	<span>© 2011 timepaw.com, all rights reserved </span>
+	<a target="_blank" href="http://blog.timepaw.com">官方博客</a>  <span>|</span>
+	<a target="_blank" href="http://blog.timepaw.com/help/">使用帮助</a><span>|</span>
+	<a target="_blank" href="http://blog.timepaw.com/feedback/" title="Feedback">意见反馈</a>  <span>|</span>
+	<a target="_blank" href="http://blog.timepaw.com/user_term/">使用条款</a>  <span>|</span>
+	<a target="_blank" href="http://blog.timepaw.com/privacy/">隐私声明</a>
+</p>
+
+<!-- END #footer -->
+</div>
+	<!-- Theme Hook -->
+<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/jquery.shortcodes.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/jquery.custom.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/slides.min.jquery.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+
+<!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<head>
+<meta charset="utf-8">
+<meta property="wb:webmaster" content="1ab3b694fe416d1b" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="title" content="你的互联网时光机，属于你的个人传记、语录和相册 | TimePaw" />
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="TimePaw用优美的时间线展示你的全部互联网生活.永久存储你的所有日志，微博，状态和照片并且可以随时出版你的传记、冲印你的相册！" />
+<link rel="shortcut icon" href="{{ STATIC_URL }}timepaw/favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+{% block css %}{% endblock %}
+{% block headjs %}{% endblock %}
+<title>{% block title %}{% endblock %}互联网生活的时光机，属于你的个人传记、语录和相册 | TimePaw</title>
+<script type="text/javascript">
+window.timepaw = {};
+//setup shortcut
+window.m = timepaw;
+</script>
+<!--[if IE 6]>
+<script type="text/javascript" src="{{ STATIC_URL }}timepaw/js/bundles/DD_belatedPNG_0.0.7a.js"></script>
+<script type="text/javascript">
+	DD_belatedPNG.fix('#top-bar, img, background');
+</script>
+<![endif]-->
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="{{ STATIC_URL }}timepaw/css/bundles/signIn.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block headjs %}
+<script src="{{ STATIC_URL }}timepaw/js/bundles/signIn.js"></script>
+{% endblock %}
+
+{% block title %}登录Timepaw{% endblock %}
+
+{% block content %}
+<div class="indentation main_home" style="background-position: 50% -500px; ">
+  	<div id="loader" class="spin" style="top: -30%; opacity: 0; ">&nbsp;</div>
+	<div id="marker" style="opacity: 1; ">
+   		<div class="dot_pulse"></div>
+  		<div class="dot"></div>
+	</div>
+	<div id="timeline_animator"></div>
+	<h1 id="extraneous_title" class="login transition" style="top: 35%; ">
+		<span class="welcome" style="top: 0px; ">欢迎回到TimePaw</span>
+	</h1>
+</div>
+
+<div id="header" class="more1024">
+	<div id="top-bar">
+	  	<div class="utility"></div>
+
+		<h1><a href="/">TimePaw</a></h1>
+	</div>
+</div>
+
+
+<div id="content">
+	<h1 class="header typeE" style="text-align:left; font-size:20px; padding:20px 0 0 20px;">欢迎回来!</h1>
+	
+	<form action="/login" enctype="multipart/form-data" method="post" id="signin">           
+	{% csrf_token %}
+		<label>
+			E-mail<div class="formHelpText float-right" style="display:inline;">{% if error.email %}{{ error.email}}{% endif %}</div>
+			<input type="text" name="email" id="username" tabindex="1" />
+		</label>
+		<label>
+			密码 <div class="formHelpText float-right" style="display:inline;">{% if error.password %}{{ error.password}}{% endif %}</div>
+			<input type="password" name="password" id="password" tabindex="2" />
+		</label>
+		<label>
+			<a href="#" class="float-left" style="font-weight:normal; text-decoration:underline; font-size:11px;">忘记密码</a>
+		</label> 
+		<input name="authenticity_token" type="hidden" value="SQMUF/aKhTM9NXwk9Hhx8FQQcdFnTLuiXvMeK3wHomE=">
+		<div id="form-actions">
+			<input type="submit" value="登录时光机" class="btn-green float-right" tabindex="4" style="font-size:13px; padding-left:18px; padding-right:18px;" />
+			<div class="form-message-error display-none">
+				用户名或密码错误，请再试一次~
+			</div>
+		</div>
+	</form>
+	
+	<p class="text typeE clear" style="text-align:left; padding-left:30px;">还没有TimePaw账户? <a href="signup">立即注册</a></p>
+</div>
+
+
+<!-- Footer -->
+{% include "footer.html" %}
+
+{% endblock %}
