@@ -1,3 +1,4 @@
+# this file is for server settings
 import os
 import json
 import djcelery
