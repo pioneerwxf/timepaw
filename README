@@ -1,10 +1,21 @@
-Run
+Before Running python manage.py runserver:
+===
+sudo easy_install pip
+sudo pip install django
+sudo pip install django-celery
+sudo pip install PIL (need VPN-GFW)
+sudo pip install feedparser
+sudo pip install python-oauth2 (git clone https://github.com/simplegeo/python-oauth2.git   sudo python setup.py install) 
+
+==then=
+python manage.py sycndb
 =====
 
 Local
 -----
 python manage.py runserver
 python manage.py celeryd -E -l info -c 2
+localhost:8000/activekeys/add?keyv=pioneerwxf
 
 Server
 -----
